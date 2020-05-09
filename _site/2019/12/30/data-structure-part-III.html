@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="description" content="Fernando Baptistella - Resume">
+    <meta name="keywords" content="personal, portfolio, resume"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- <link rel="stylesheet" href="/assets/css/vendor/bootstrap.css"> -->
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/2019/12/30/data-structure-part-III.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Fernandoblima" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+     <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Set and MultiSet -  Data Structure &amp; Algorithms Part III | Fernandoblima</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Set and MultiSet -  Data Structure &amp; Algorithms Part III" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Welcome to the third part of the series, in this post I’ll tell you about the set and multiSet structure and continue our journey on data structure and algorithm. 👩‍💻👨‍💻 However, I recommend reading the hashtable post if you are not familiar with data structures." />
+<meta property="og:description" content="Welcome to the third part of the series, in this post I’ll tell you about the set and multiSet structure and continue our journey on data structure and algorithm. 👩‍💻👨‍💻 However, I recommend reading the hashtable post if you are not familiar with data structures." />
+<link rel="canonical" href="http://localhost:4000/2019/12/30/data-structure-part-III.html" />
+<meta property="og:url" content="http://localhost:4000/2019/12/30/data-structure-part-III.html" />
+<meta property="og:site_name" content="Fernandoblima" />
+<meta property="og:image" content="http://localhost:4000/assets/img/triangle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-30T00:00:00-03:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2019/12/30/data-structure-part-III.html","headline":"Set and MultiSet -  Data Structure &amp; Algorithms Part III","dateModified":"2019-12-30T00:00:00-03:00","datePublished":"2019-12-30T00:00:00-03:00","description":"Welcome to the third part of the series, in this post I’ll tell you about the set and multiSet structure and continue our journey on data structure and algorithm. 👩‍💻👨‍💻 However, I recommend reading the hashtable post if you are not familiar with data structures.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/12/30/data-structure-part-III.html"},"image":"http://localhost:4000/assets/img/triangle.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Set and MultiSet -  Data Structure & Algorithms Part III | Fernandoblima</title>
+    <meta name="description" content="Welcome to the third part of the series, in this post I’ll tell you about the set and multiSet structure and continue our journey on data structure and algor...">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+		<!-- <a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a> -->
+
+		<h1 class="site-title">
+			<a aria-label="Fernandoblima" href="/">
+        Fernandoblima
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Curriculum" title="Curriculum" href="/curriculum/">
+                     Curriculum 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fa fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="">
+    
+      <h1 id="Set+and+MultiSet+-%E2%80%8A+Data+Structure+%26+Algorithms+Part+III" class="title">Set and MultiSet -  Data Structure & Algorithms Part III</h1>
+      
+
+<div class="post-info"><!-- 
+      <img src="/assets/img/avatars/zdff.jpg">
+     -->
+    <p class="meta">
+      Fernando B. Lima - December 30, 2019
+    </p></div>
+
+    
+  </header>
+  <section class="post-content">
+  
+      <p>Welcome to the third part of the series, in this post I’ll tell you about the set and multiSet structure and continue our journey on data structure and algorithm. 👩‍💻👨‍💻 However, I recommend reading the hashtable post if you are not familiar with data structures.</p>
+
+<!--more-->
+<p>Because, unlike the <a href="https://fernandoblima.github.io/2019/11/25/data-structure-part-II.html">last post</a> when we landed on a strange terrain, here we will be a place where we should already have seen it before. The focus of this post is to learn what a set is with examples of how it works, code implementation using javascript and, of course, answer any questions about it. This data structure is not difficult to learn at first, but it can be a bit complicated.</p>
+
+<p>Let’s continuing our journey! 🌏 🚀</p>
+
+<blockquote>
+  <p>💭 “Those hours of practice, and failure, are a necessary part of the learning process.”- Gina Sipley</p>
+</blockquote>
+
+<h3 id="outline">Outline</h3>
+
+<p>The article is divided into the following parts:</p>
+
+<ul>
+  <li>Understanding what is Set and MultiSet.</li>
+  <li>Code implementation and complexity analysis.</li>
+</ul>
+
+<p>◼️ Set</p>
+
+<h4 id="what-is-it">What is it</h4>
+
+<p>As you can imagine you already have some basic understanding about what is the sets structure. Basically is a collection of unique elements that can be objects, numbers, strings, Pokémon’s … In other words, anything! 😁</p>
+
+<p>We can also find in many language that support the set such as Java, C, Python, .NET Framework and so on. For instance, the ECMAScript 6 or ES2015 introduced the Set data structure to the JavaScript language. We can initialized by calling:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Despite the fact that we can use this implementation, we will avoid and build our own because the goal here is to learn how this structure works behind the scenes.</p>
+
+<p>With that in mind, what we need to create our structure is use an array and add some element. We can also use the list structure, but it is an inefficient and simple implementation where operations such as inserting or deleting do not perform well. Having been said that, there are better approaches to implemented using more efficient data structures such as trees, tries, or hash tables, however, in this post we will use the array and the hash table that we already have seen in this series.</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/3ornk57KwDXf81rjWM/giphy.gif" /></div>
+
+<p>Great! We already have a basic understanding of how we can build the structure of the set, now let’s discuss some properties. Every value you insert have to appear only once because this structure does not allow repeated values, see the example below:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="c1">// Allowed</span>
+<span class="nx">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1">// Not Allowed</span>
+</code></pre></div></div>
+
+<p>Moreover, other important factor about this structure is related by the fact that we do not need to order the elements, for instance:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> 
+<span class="nx">D</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> 
+<span class="c1">// The Set C is the same as set D.</span>
+</code></pre></div></div>
+
+<p>We can say that this structure is an implementation of the mathematical concept of a finite set using the operations of the algebra of sets. Okay, let’s put everything that we had learned into our code. But first things first, we will be creating the skeleton off our set class and, as you can notice we have two functions created.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">SetStructure</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">capacity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">capacity</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">remove</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">capacity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">){</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">capacity</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>But, wait a second! ✋ Before insert some values we must make sure if the value that we intend insert is not in our array. In the <em>insert()</em> function use the <em>indexOf()</em> propriety to verify if has any occurrence of a specified value in our structure. This method returns the position of element, however, if the array does not contain the data, the value -1 will be returned. We can use a similar logic in <em>remove()</em> function.</p>
+
+<p>As mentioned earlier, this structure is based on the mathematical concepts of sets; therefore, we can use its properties in our code to define some operations using set algebra, such as union and intersection. Let’s have a brief discussion of the core set theoretical operations, so take a look below:</p>
+
+<ul>
+  <li>Union</li>
+</ul>
+
+<p>As the name suggest this operation will join two sets resulting in a new set structure that combine all members of either A or B set. We can use the math definition to define this operation:</p>
+
+<center>A U B = {x : x ∈ A or x ∈ B} </center>
+
+<p>Let’s put in an example:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{1, 2} ∪ {1, 2} = {1, 2}.
+{1, 2, 3} ∪ {3, 4, 5} = {1, 2, 3, 4, 5}
+</code></pre></div></div>
+
+<p>To give an illustration of how the union operation is, take a look at the following image:</p>
+
+<div style="text-align:center"><img src="https://thepracticaldev.s3.amazonaws.com/i/jcfi7pepfou7aj8pk9x2.png" /></div>
+
+<h6 id="-figure-1-the-union-of-a-and-b-"><center> Figure 1: The union of A and B </center></h6>
+
+<p>Now that we already have a clearly understanding, lets see how it works in our code.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">union</span><span class="p">(</span><span class="kd">set</span><span class="p">)</span> <span class="p">{</span>
+     <span class="kd">var</span> <span class="nx">newSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SetStructure</span><span class="p">();</span>
+     <span class="kd">set</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">newSet</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+     <span class="p">});</span>
+     <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">newSet</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+     <span class="p">});</span>
+     <span class="k">return</span> <span class="nx">newSet</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Intersect</li>
+</ul>
+
+<p>In this operation a new set is created using all elements that the both sets have in common, that can be denoted by A ∩ B. In case of A ∩ B = ∅, then A and B are considered disjoint. The math concept about the intersect is defined as the following:</p>
+
+<center>A ∩ B = {x : x ∈ A and x ∈ B}</center>
+
+<div style="text-align:center"><img src="https://thepracticaldev.s3.amazonaws.com/i/rszxuaxcrwu7gxu10o3t.png" /></div>
+
+<h6 id="-figure-2-the-intersection-of-a-and-b-"><center> Figure 2: The intersection of A and B </center></h6>
+
+<p>And we can write the function that receives a set as parameter like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">intersect</span><span class="p">(</span><span class="kd">set</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">newSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SetStructure</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="kd">set</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">newSet</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nx">newSet</span><span class="p">;</span>
+    <span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Difference</li>
+</ul>
+
+<p>The difference operation, or complement if you prefer, is the difference between the set A and B. But what does it mean? 🧐 In other words, is the result of the values that contains in only one set and can be denoted by the following definition:</p>
+
+<center>A \ B or A − B where {x : x ∈ B, and x ∉ A} </center>
+
+<div style="text-align:center"><img src="https://thepracticaldev.s3.amazonaws.com/i/dkytzz3o1mge5v9a5yz9.png" /></div>
+
+<h6 id="-figure-3-the-difference-of-a-and-b-"><center> Figure 3: The difference of A and B </center></h6>
+
+<p>Similar to union and intersect functions, we can iterate the list to get the difference between the sets:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">difference</span><span class="p">(</span><span class="kd">set</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">newSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SetStructure</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="kd">set</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">newSet</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nx">newSet</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Symmetric Difference</li>
+</ul>
+
+<p>Another operation that we can create is the symmetric difference, also know as disjunctive union, which is the set where the elements not below in their intersection.</p>
+
+<div style="text-align:center"><img src="https://thepracticaldev.s3.amazonaws.com/i/eq8zrfkbs9jntiimwjk9.png" /></div>
+
+<h6 id="-figure-4-the-symmetric-difference-of-a-and-b-"><center> Figure 4: The symmetric difference of A and B </center></h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">symmetricDifference</span><span class="p">(</span><span class="kd">set</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">newSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SetStructure</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="kd">set</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">newSet</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">setDifference</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="kd">set</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">setDifference</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">newSet</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nx">newSet</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>⚡️ If you would like to know others functions that I implemented such as removeAll, getAllSubsets, contains, and others, you can access all the code just clicking <a href="https://github.com/FernandoBLima/data-structures">here</a>.</p>
+</blockquote>
+
+<ul>
+  <li>Subset</li>
+</ul>
+
+<p>The next operation define if every value of set A belongs to the set B and vice-versa. If they contain each other can denoted as A ⊆ B, which can be write as A is contained in B, is equivalent to A = B.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">isSubset</span><span class="p">(</span><span class="kd">set</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kd">set</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">value</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span> 
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Proper Subset</li>
+</ul>
+
+<p>It is quite similar to subset operation, but two sets can be considered as proper subset if one set is not equal to another but has at least one element.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">isProperSubset</span><span class="p">(</span><span class="kd">set</span><span class="p">){</span>
+        <span class="k">return</span> <span class="kd">set</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">value</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">listValues</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>The set is mutable, however, we can create immutable frozenset objects initialized with elements of the given iterable. Which is a set that does not change after being build. In Python, we can use the frozenset () function to create this structure.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> 
+<span class="n">frozenSet</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> 
+</code></pre></div></div>
+
+<p>Very cool and easy to understand, right? 😁</p>
+
+<p>◼️ MultiSet</p>
+
+<p>The Multiset structure or Bag is quite similar to set structure that we have learned before, but the difference is due to the fact that unlike the set structure allows more than one instance of the element in the structure.</p>
+
+<p>An amazing thing that about programming it that there are many ways to develop the Multiset, we can continue using an array to store the values, or tuples if you are developing in Python.</p>
+
+<p>This structure has the following properties:</p>
+
+<ul>
+  <li>items: List of element that contains the data and key.</li>
+  <li>multiplicity: Property which is a positive integer that gives how many elements has in the Multiset.</li>
+  <li>cardinality: Summing the multiplicities of all its elements.</li>
+</ul>
+
+<p>Since multiset is a type of set generalization, there are several ways to apply it to problem solving, Fuzzy multisets and Rough multisets, are some examples.</p>
+
+<p>Now that we already know what Multiset is, let’s create the main operations, which are: insert and remove.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="nx">insert</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">cardinality</span> <span class="o">=</span> <span class="mi">1</span><span class="p">){</span>
+        <span class="k">try</span><span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">cardinality</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Is not possible to insert a null value</span><span class="dl">'</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">listKeys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">);</span>
+            <span class="nx">listKeys</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">item</span> <span class="o">==</span> <span class="nx">key</span><span class="p">){</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cardinality</span><span class="p">;</span>
+                    <span class="nx">flag</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">cardinality</span> <span class="o">=</span> <span class="nx">cardinality</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">flag</span><span class="p">){</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cardinality</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">cardinality</span> <span class="o">=</span> <span class="nx">cardinality</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+        <span class="p">}</span>   
+    <span class="p">}</span>
+
+    <span class="nx">remove</span><span class="p">(</span><span class="nx">chave</span><span class="p">,</span> <span class="nx">cardinality</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">chave</span><span class="p">]){</span>
+            <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">chave</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">cardinality</span> <span class="o">&gt;</span> <span class="nx">value</span><span class="p">){</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">chave</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">chave</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">-</span> <span class="nx">cardinality</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can use the hash table in our Multiset structure, that is to say, the time complexity is always a constant O(1) to add or search an element. As you can imagine this structure has the same functions as the set, however, there are some differences that we are going to learn together. 🤓</p>
+
+<p>The algebra operations such as <em>union</em>, <em>sum</em>, <em>intersect</em> and <em>difference</em> have similar logic applies as the previous methods described before, so I’ll skip the code explanation of them to not waste our time and only discuss about the difference.</p>
+
+<ul>
+  <li>Union</li>
+</ul>
+
+<p>The main difference in the union of two multiset is that each element has the number of instances equal to the maximum of the multiplicity in A and B.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{1, 2, 2} ∪ {2, 2, 3} = {1, 2, 2, 3}.
+</code></pre></div></div>
+
+<ul>
+  <li>Sum</li>
+</ul>
+
+<p>In this operation the intersection of two multisets is equal to the sum  of the multiplicity of an element in A and B.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{1, 2, 2} + {2, 2, 3} = {1, 2, 2, 2, 2, 3}
+</code></pre></div></div>
+
+<ul>
+  <li>Intersect</li>
+</ul>
+
+<p>The intersection of two multisets is equal to the minimum of the multiplicity of an element in A and B.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{1, 2, 2} + {2, 2, 3} = {2, 2}
+</code></pre></div></div>
+
+<ul>
+  <li>Difference</li>
+</ul>
+
+<p>The difference of two multisets is equal to the multiplicity of the element in A minus the multiplicity of the element in B.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{1, 2, 2} + {2, 2, 3} = {3}
+{2, 2, 3} − {1, 2, 2} = {1}
+</code></pre></div></div>
+
+<h4 id="️-conclusion">◼️ Conclusion</h4>
+
+<p>In conclusion, the most important factor that make the set structure special and unique comparing with the others is that use the core set-theoretical operations defined by the algebra of sets, which allows the use of properties and laws of sets using operation such as union and intersection. In this post we have a brief discussion about this operations.</p>
+
+<p>We have learned that sets can be implemented using various data structures but the most common approach is using array or hash table. Even though the set structure looks like a simple structure there are many languages now include it can be applied in diverse scenarios and different generalizations, such as Fuzzy multisets, rough multisets and in relational databases.</p>
+
+<hr />
+
+<p>That’s all folks! I hope you have fun learning the set structure 😁</p>
+
+<p>Code: https://github.com/FernandoBLima/data-structures</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>&lt; <a href="https://fernandoblima.github.io/2019/11/25/data-structure-part-II.html">previous</a></td>
+      <td>next ( coming soon) &gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><em>So we finished our discussion about Set and Multiset data structure.</em> 🙌</p>
+
+<p><em>I hope you have a clear idea how to work. If you found this article helpful or if you find something I miss out or that you like it, feel free to let me know.</em> 😁</p>
+
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/12/30/data-structure-part-III.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2019/12/30/data-structure-part-III.html&text=Set+and+MultiSet+-%E2%80%8A+Data+Structure+%26+Algorithms+Part+III%20%7C%20Fernandoblima:%20http://localhost:4000/2019/12/30/data-structure-part-III.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+             
+        <li>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2019/12/30/data-structure-part-III.html&title=Set+and+MultiSet+-%E2%80%8A+Data+Structure+%26+Algorithms+Part+III%20%7C%20Fernandoblima&summary=&source=http://localhost:4000/2019/12/30/data-structure-part-III.html" target="_blank" title="Share on LinkedIn">
+			<i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on LinkedIn</span>
+		</a>
+        </li>
+          
+        <li>
+            <a href="mailto:?subject=Set+and+MultiSet+-%E2%80%8A+Data+Structure+%26+Algorithms+Part+III%20%7C%20Fernandoblima&body=:%20http://localhost:4000/2019/12/30/data-structure-part-III.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+  <section style="text-align: left !important">
+    <!-- Tag list -->
+   
+   
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button tag-post" href="/tags#Algorithm">
+      <p><i class="fa fa-tag fa-fw"></i> Algorithm</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Data+Structure">
+      <p><i class="fa fa-tag fa-fw"></i> Data Structure</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Javascript">
+      <p><i class="fa fa-tag fa-fw"></i> Javascript</p>
+    </a>
+    
+  </div>
+</footer>
+
+  </section>
+
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <p>Next post</p>
+        <a alt="Disjoint Set - Data Structure Part IV" href="/2020/03/04/data-structure-part-IV.html">
+            Disjoint Set - Data Structure Part IV
+        </a>
+    </div>
+    
+    
+
+    <div id="next-post">
+        <p>Previous post</p>
+        <a alt="Dictionary and HashTable -  Data Structure & Algorithms Part II" href="/2019/11/25/data-structure-part-II.html">
+            Dictionary and HashTable -  Data Structure & Algorithms Part II
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  
+  header#main {
+    background-repeat:no-repeat;
+    background-image: url('');
+  }
+</style>
+    </div>
+    
+<footer class="site-footer">
+
+    <!-- <span><b>Fernando Baptistella</b></span>
+    
+    <span>© 2020</span> -->
+
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/fernandoblima" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/fernando-baptistella/" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>

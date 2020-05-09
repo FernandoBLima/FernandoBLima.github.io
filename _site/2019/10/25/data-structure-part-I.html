@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="description" content="Fernando Baptistella - Resume">
+    <meta name="keywords" content="personal, portfolio, resume"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- <link rel="stylesheet" href="/assets/css/vendor/bootstrap.css"> -->
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/2019/10/25/data-structure-part-I.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Fernandoblima" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+     <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Linked List, Queue and Stack - Data Structure &amp; Algorithms Part I | Fernandoblima</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Linked List, Queue and Stack - Data Structure &amp; Algorithms Part I" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learning the concepts and how to implement Linked List, Queue and Stack. Welcome to my first article where I going to talk about Data Structures. I’m so excited to be writing this series! It’s my first article here and I have been postponed this for so a long time and many reasons, maybe I can write about it another time, but finally I decided to complete this goal." />
+<meta property="og:description" content="Learning the concepts and how to implement Linked List, Queue and Stack. Welcome to my first article where I going to talk about Data Structures. I’m so excited to be writing this series! It’s my first article here and I have been postponed this for so a long time and many reasons, maybe I can write about it another time, but finally I decided to complete this goal." />
+<link rel="canonical" href="http://localhost:4000/2019/10/25/data-structure-part-I.html" />
+<meta property="og:url" content="http://localhost:4000/2019/10/25/data-structure-part-I.html" />
+<meta property="og:site_name" content="Fernandoblima" />
+<meta property="og:image" content="http://localhost:4000/assets/img/triangle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-25T00:00:00-03:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2019/10/25/data-structure-part-I.html","headline":"Linked List, Queue and Stack - Data Structure &amp; Algorithms Part I","dateModified":"2019-10-25T00:00:00-03:00","datePublished":"2019-10-25T00:00:00-03:00","description":"Learning the concepts and how to implement Linked List, Queue and Stack. Welcome to my first article where I going to talk about Data Structures. I’m so excited to be writing this series! It’s my first article here and I have been postponed this for so a long time and many reasons, maybe I can write about it another time, but finally I decided to complete this goal.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/10/25/data-structure-part-I.html"},"image":"http://localhost:4000/assets/img/triangle.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Linked List, Queue and Stack - Data Structure & Algorithms Part I | Fernandoblima</title>
+    <meta name="description" content="Learning the concepts and how to implement Linked List, Queue and Stack.Welcome to my first article where I going to talk about Data Structures. I’m so excit...">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+		<!-- <a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a> -->
+
+		<h1 class="site-title">
+			<a aria-label="Fernandoblima" href="/">
+        Fernandoblima
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Curriculum" title="Curriculum" href="/curriculum/">
+                     Curriculum 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fa fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="">
+    
+      <h1 id="Linked+List%2C+Queue+and+Stack%E2%80%8A-%E2%80%8AData+Structure+%26+Algorithms+Part+I" class="title">Linked List, Queue and Stack - Data Structure & Algorithms Part I</h1>
+      
+
+<div class="post-info"><!-- 
+      <img src="/assets/img/avatars/zdff.jpg">
+     -->
+    <p class="meta">
+      Fernando B. Lima - October 25, 2019
+    </p></div>
+
+    
+  </header>
+  <section class="post-content">
+  
+      <p>Learning the concepts and how to implement Linked List, Queue and Stack.</p>
+
+<p>Welcome to my first article where I going to talk about Data Structures. I’m so excited to be writing this series! It’s my first article here and I have been postponed this for so a long time and many reasons, maybe I can write about it another time, but finally I decided to complete this goal.</p>
+
+<!--more-->
+
+<p>Here I will show how important this topic is and why you should understand all the concepts. In my point of view is important to know the concepts and how it works behind the scenes, although there are many frameworks that already have the complete implementation. But, trust me, it is essential for your career and maybe you may need it in the future to resolve some problem. 👨‍💻👩‍💻</p>
+
+<p>Here we are going to have a brief discussion with Javascript examples and I will start from the beginning, gradually, because we do not have to be hurry! So, let’s diving in this fantastic world called data structure and algorithms together. 😀</p>
+
+<p>💭 “Bad programmers worry about the code. Good programmers worry about data structures and their relationships.” - Linus Torvalds</p>
+
+<h3 id="outline">Outline</h3>
+
+<ul>
+  <li>Discussion about Singly, Doubly and Circular Linked List.</li>
+  <li>What is a Queue and Stack?</li>
+  <li>Terminology.</li>
+  <li>When and where is used?</li>
+  <li>Code implementation and complexity analysis.</li>
+</ul>
+
+<h3 id="what-is-a-linked-list">What is a Linked List?</h3>
+
+<p>Before we start to discuss, we need to formulate a clear understanding of what a linked list is. A collection structure represents a sequence of nodes. But, wait! ✋ What does node mean? 🤔  An object that contains value and pointer with reference to stores the address for the next element into the sequence of the list, as you can see in the following figure:</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/mt5yv6qjod33bd37cr0o.jpg" alt="Alt Text" /></p>
+<h6 id="figure-1-linked-list-representation"><center>Figure 1: Linked List representation.</center></h6>
+
+<p>Actually, you can imagine a pointer, as a place where you can find and obtain the stored value in the node, is a reference to a location in memory. The first node in the list represent a head and has a pointer to the next element, and as you can imagine the last node is the tail because has a null pointer to the next node.</p>
+
+<blockquote>
+  <Optional> You also can use a pointer to the previous object. As a result, a Doubly Linked List type is created.
+</Optional>
+</blockquote>
+
+<p>Another important aspect to understand linked list is related to the efficient memory utilization. Is not necessary to pre-allocate memory, as a consequence you can add as much items you want in the list. However, some problems can show up if is required more memory than you can have, because each node has a pointer and other memory for itself.</p>
+
+<h3 id="terminology">Terminology</h3>
+
+<p>As you can see in the image in the section above, we define two properties:</p>
+<ul>
+  <li>value: Element that holds the data.</li>
+  <li>next: Point to the next node.</li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>prev (optional): Can be used to point to the previous node. You can see more about in Doubly Linked List Structure.</li>
+  </ul>
+</blockquote>
+
+<h3 id="lets-begin">Let’s begin!</h3>
+
+<p>Now that we are on the same page with the concepts, let’s start the discussion more deeply about Linked List methods, translate the concepts into to our code, and finally implement our data structure. At the beginning, we are going to focus in the Linked List, because it is the most common and simplest data structure linear collection of data elements.</p>
+
+<p>Let’s start to work! 😃</p>
+
+<h4 id="️-singly-linked-list">◼️ Singly Linked List</h4>
+
+<p>Is called as singly because a node only hold a reference to the next element of the sequence and you cannot access previous elements because it does not store any pointer or reference to the previous node, as you can see in the figure.</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/3gdakj5md6oqx1gyuv9l.jpg" alt="Alt Text" /></p>
+<h6 id="figure-2-a-singly-linked-list-that-contain-an-element-and-a-pointer-to-the-next-node"><center>Figure 2: A singly linked list that contain an element and a pointer to the next node</center></h6>
+
+<p>Before we describe the operations, we need to define the most important part in our code that will help us to build the linear list structure, the node class.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Node</span> <span class="p">{</span>
+   <span class="kd">constructor</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Our main class only has a reference to the value and the next node, pretty simple, right? So, let’s move on and define the Linked List class, which has the head property that point to the first element into the list, other property we have to declared is the size, which give to us the number of nodes that exist into our list.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">LinkedList</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Okay, continuing the discussion we have to add methods to our class. Let’s check out:</p>
+
+<ul>
+  <li><strong>insertAtHead</strong>: Our first method is used to add a new element at the beginning of our data structure. This method has a constant running time (O(1)). But what does it mean? 🧐 It means that it takes the same amount of time to add a value in the list, is a constant time. In this case is necessary only to move one time to add a new element in the first position into the list. As result, we need to update only the current head that will be pointing to the new item that we are going to be creating. Here’s how it should be:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">addToHead</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+   <span class="k">if</span><span class="p">(</span><span class="nx">linkedList</span><span class="p">.</span><span class="nx">head</span><span class="p">){</span>
+      <span class="kd">var</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+   <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>removeAtHead</strong>: If we want remove one element from the head all we have to do is replace the head by the following element. Like the method before the constant running time is O(1).</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">removeAtHead</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">){</span>
+       <span class="kd">var</span> <span class="nx">newHead</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">newHead</span><span class="p">;</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>search</strong>: If we are looking for a specific item? Do not be hurry; we only need iterate the list until the end to find the element in the list. But imagine the following scenario: We have a list with 1000 items and we are looking for the 999 item. Can you guess what can happen? If we want to get some specific value or node at position N then we have to moving the pointer throw the entire list to find it. This can cause a problem with the access time.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">search</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="nx">node</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">value</span> <span class="o">!=</span> <span class="nx">value</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">count</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">value</span> <span class="o">!=</span> <span class="nx">value</span><span class="p">){</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+                <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>There are others functions like <strong>getAtIndex</strong>, <strong>addAtIndex</strong>, <strong>removeAt</strong> and <strong>reverse</strong> that I would like to discuss, but they have similar logic applies as the previous methods described before, so I’ll skip the explanation of them to not waste your time.</p>
+
+<blockquote>
+  <p>⚡️ But if you would like to know how I implemented, you can access all the code just clicking <a href="https://github.com/FernandoBLima/data-structures">here</a>. 
+__</p>
+</blockquote>
+
+<h4 id="️-doubly-linked-list">◼️ Doubly Linked List</h4>
+
+<p>As I mentioned earlier, the Doubly Linked List is a structure that has capacity to pointer to the previous node, which is the biggest difference comparing with the Singly List. Now we gain the power to move traversed backward in the list. For instance, each node has a pointer to the previous element, allowing you to move through the list from the tail, as show in the picture below.</p>
+
+<p>As Uncle Ben said to Peter Parker, “with great power comes great responsibility”. As consequence, is required more space to store the addresses of previous elements instead just one to the next element in list, so takes two more memory comparing with the singly structure.</p>
+
+<p>Besides that, mostly all functions and behaviors are quite similar with the Singly List. With basic understanding of Linked List, it is so easy to build and extend functionality to make it a Double List. So easy, right? 😁 You can feeling that we are having progress. 💪</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/98yyqanvz90fabcn7ilc.jpg" alt="Alt Text" /></p>
+
+<h6 id="figure-3-a-doubly-linked-list-with-pointer-to-the-previous-element"><center>Figure 3: A doubly linked list with pointer to the previous element</center></h6>
+
+<p>Even though the behavior is similar, we need to update the Singly List functions such as <strong>addAtHead</strong>, <strong>removeAtHead</strong>, <strong>search</strong> and others to consider the previous property. Besides these functions, we have new weapons to use here, as you can see below:</p>
+
+<ul>
+  <li><strong>insertAtTail</strong>: We define a new element at the bottom of the list and point the last element as the tail. Can you imagine the constant running time?</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">addAtTail</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">tail</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tail</span><span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tail</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>removeAtTail</strong>: Here the last item from the list is set to the null value. As a result, the final element become the previous element of the last element.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">removeAtTail</span><span class="p">(){</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">removeAtHead</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tail</span><span class="p">.</span><span class="nx">prev</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tail</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="️-circular-linked-list">◼️ Circular Linked List</h4>
+
+<p>The only difference between the doubly Linked List is the fact that the tail element is linked with the first element in the list. As a result, a loop was created and now we can move forward and back-forward into the entire list.</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/hd8jlfhp09a7eijby075.jpg" alt="Alt Text" /></p>
+<h6 id="figure-4-circular-linked-list-that-contain-a-link-between-the-first-and-last-element"><center>Figure 4: Circular linked list that contain a link between the first and last element.</center></h6>
+
+<p>Now we will use the entire acknowledgement that we learned to implement two new data structure.</p>
+
+<h4 id="️-queue">◼️ Queue</h4>
+
+<p>The First-In-First-Out (FIFO) is an example of a linear data structure where the first element added to the queue will be the first to be removed. For instance, you can visualize this behavior where you are in a queue in a store, bank or supermarket.</p>
+
+<p>🚶‍♂️🏦🚶‍♀️🚶‍♂️🚶‍♀️🚶‍♂️</p>
+
+<p>A new element is added to the end of the list by the enqueuer (addFromTail) function and removed from the top of the list using the dequeue (removeFromTail) function. You can see other people or find in a book referencing the queue as removing or poling method, for me I prefer only dequeue. Other common operation in this structure is the peek that return the item at the top of the stack as peek.</p>
+
+<p>However, when should I use these structure data? 🤔 It is suggested to use Queue when the order matter, like a queueing system for requests.</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/fmgyixedyr4xnuy3vgjg.png" alt="Alt Text" /></p>
+<h6 id="figure-5-representation-of-a-queue"><center>Figure 5: Representation of a Queue.</center></h6>
+
+<h4 id="️-stack">◼️ Stack</h4>
+
+<p>Known as LIFO (last in, first out) data structure, you can visualize understanding how it works making an analogy when a set of items is stacked on top of each other, creating a pile of books.</p>
+
+<p>Like I said before, this structure has some similarities from Linked List and you can use addFromTail (Push) and removeFromTail (Pop) operations in your stack structure. Just like a queue, the operation that return an item at the top of the stack is called as peek.</p>
+
+<p>You can find this structure in mechanisms in text editors, compiler syntax checking or also on a graph.</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/l802rd6482odvyp7qvjw.png" alt="Alt Text" /></p>
+<h6 id="figure-6-a-representation-of-a-stack-and-the-push-and-pop-functions"><center>Figure 6: A representation of a stack and the Push and Pop functions.</center></h6>
+
+<hr />
+
+<h4 id="️-time-complexity">◼️ Time Complexity</h4>
+
+<p>You can see the time complexity in the image below, where n is the length of Linked List.</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/99u1y27olrgqexnulq8m.png" alt="Alt Text" /></p>
+<h6 id="figure-7-the-time-complexity"><center>Figure 7: The time complexity.</center></h6>
+
+<p>Let’s create an example by adding some values in the head and then removing in a Linked List using addAtHead and removeAtHead functions. In addition, using the time() object in Javascript will allowed us to time and analyzes the performance of our code, as the follow figure:</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/xytlcgb5w0bswfern2br.png" alt="Alt Text" /></p>
+<h6 id="figure-8-output-after-insert-and-remove-some-values-in-the-singly-linked-list"><center>Figure 8: Output after insert and remove some values in the Singly Linked List.</center></h6>
+
+<p>As you can see, we add some values in the list that show us how faster it is. Seeing the values we can realize that the execution time become a constant. The image below show the plot using Python with the Panda DataFrame library.</p>
+
+<p><img src="https://thepracticaldev.s3.amazonaws.com/i/cm793kn3w5u72upq05fy.png" alt="Alt Text" /></p>
+<h6 id="figure-9--the-consume-time-between-addathead-and-removeathead-functions"><center>Figure 9:  The consume time between addAtHead and removeAtHead functions.</center></h6>
+
+<p>We are done 🙌</p>
+
+<h4 id="️-and-thats-it">◼️ And that’s it!</h4>
+
+<p>To sum up our brief discussion, we have learnt that the Linked List is a simplest and dynamic data structure that can be used to implement others structures such as Queue and Stack.</p>
+
+<p>You can use these structures to perform a huge amount of insertion and deletion of items. It run fast by the fact that we need update only the next pointer in the node. However, if we want to get some specific value or node at position N, a problem with access time may occur if the size of the list is longer.</p>
+
+<p>Other important factor is the efficient memory utilization, it not necessary to pre-allocate memory. Nevertheless, in case you need more space, a problem related to a contiguous block of memory can occur.</p>
+
+<p>That’s all folks!</p>
+
+<p>Code: https://github.com/FernandoBLima/data-structures</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>next ( coming soon) &gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/10/25/data-structure-part-I.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2019/10/25/data-structure-part-I.html&text=Linked+List%2C+Queue+and+Stack%E2%80%8A-%E2%80%8AData+Structure+%26+Algorithms+Part+I%20%7C%20Fernandoblima:%20http://localhost:4000/2019/10/25/data-structure-part-I.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+             
+        <li>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2019/10/25/data-structure-part-I.html&title=Linked+List%2C+Queue+and+Stack%E2%80%8A-%E2%80%8AData+Structure+%26+Algorithms+Part+I%20%7C%20Fernandoblima&summary=&source=http://localhost:4000/2019/10/25/data-structure-part-I.html" target="_blank" title="Share on LinkedIn">
+			<i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on LinkedIn</span>
+		</a>
+        </li>
+          
+        <li>
+            <a href="mailto:?subject=Linked+List%2C+Queue+and+Stack%E2%80%8A-%E2%80%8AData+Structure+%26+Algorithms+Part+I%20%7C%20Fernandoblima&body=:%20http://localhost:4000/2019/10/25/data-structure-part-I.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+  <section style="text-align: left !important">
+    <!-- Tag list -->
+   
+   
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button tag-post" href="/tags#Algorithm">
+      <p><i class="fa fa-tag fa-fw"></i> Algorithm</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Data+Structure">
+      <p><i class="fa fa-tag fa-fw"></i> Data Structure</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Javascript">
+      <p><i class="fa fa-tag fa-fw"></i> Javascript</p>
+    </a>
+    
+  </div>
+</footer>
+
+  </section>
+
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <p>Next post</p>
+        <a alt="Dictionary and HashTable -  Data Structure & Algorithms Part II" href="/2019/11/25/data-structure-part-II.html">
+            Dictionary and HashTable -  Data Structure & Algorithms Part II
+        </a>
+    </div>
+    
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  
+  header#main {
+    background-repeat:no-repeat;
+    background-image: url('');
+  }
+</style>
+    </div>
+    
+<footer class="site-footer">
+
+    <!-- <span><b>Fernando Baptistella</b></span>
+    
+    <span>© 2020</span> -->
+
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/fernandoblima" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/fernando-baptistella/" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{% if site.theme_settings.footer_text %}
+<footer class="site-footer">
+
+    <!-- <span><b>{{ site.ownerFullName }}</b></span>
+    {% capture currentyear %}{{ 'now' | date: "%Y" }}{% endcapture %}
+    <span>© {{ currentyear }}</span> -->
+
+    <p class="text">{{ site.theme_settings.footer_text }}</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                {% include icons.html %}
+                </ul>
+            </div>
+</footer>
+{% endif %}
+
+

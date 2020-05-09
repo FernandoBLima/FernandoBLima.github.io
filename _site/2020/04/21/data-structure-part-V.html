@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="description" content="Fernando Baptistella - Resume">
+    <meta name="keywords" content="personal, portfolio, resume"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- <link rel="stylesheet" href="/assets/css/vendor/bootstrap.css"> -->
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/2020/04/21/data-structure-part-V.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Fernandoblima" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+     <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Tree and Binary Search Tree - Data Structure &amp; Algorithm Part V | Fernandoblima</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Tree and Binary Search Tree - Data Structure &amp; Algorithm Part V" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Finally, this series will talk about the tree structure and I am very excited because it is one of the most important structures and there is a lot to cover. 😁" />
+<meta property="og:description" content="Finally, this series will talk about the tree structure and I am very excited because it is one of the most important structures and there is a lot to cover. 😁" />
+<link rel="canonical" href="http://localhost:4000/2020/04/21/data-structure-part-V.html" />
+<meta property="og:url" content="http://localhost:4000/2020/04/21/data-structure-part-V.html" />
+<meta property="og:site_name" content="Fernandoblima" />
+<meta property="og:image" content="http://localhost:4000/assets/img/triangle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-21T00:00:00-03:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2020/04/21/data-structure-part-V.html","headline":"Tree and Binary Search Tree - Data Structure &amp; Algorithm Part V","dateModified":"2020-04-21T00:00:00-03:00","datePublished":"2020-04-21T00:00:00-03:00","description":"Finally, this series will talk about the tree structure and I am very excited because it is one of the most important structures and there is a lot to cover. 😁","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/04/21/data-structure-part-V.html"},"image":"http://localhost:4000/assets/img/triangle.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Tree and Binary Search Tree - Data Structure & Algorithm Part V | Fernandoblima</title>
+    <meta name="description" content="Finally, this series will talk about the tree structure and I am very excited because it is one of the most important structures and there is a lot to cover. 😁">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+		<!-- <a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a> -->
+
+		<h1 class="site-title">
+			<a aria-label="Fernandoblima" href="/">
+        Fernandoblima
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Curriculum" title="Curriculum" href="/curriculum/">
+                     Curriculum 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fa fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="">
+    
+      <h1 id="Tree+and+Binary+Search+Tree+-+Data+Structure+%26+Algorithm+Part+V" class="title">Tree and Binary Search Tree - Data Structure & Algorithm Part V</h1>
+      
+
+<div class="post-info"><!-- 
+      <img src="/assets/img/avatars/zdff.jpg">
+     -->
+    <p class="meta">
+      Fernando B. Lima - April 21, 2020
+    </p></div>
+
+    
+  </header>
+  <section class="post-content">
+  
+      <p>Finally, this series will talk about the tree structure and I am very excited because it is one of the most important structures and there is a lot to cover. 😁</p>
+
+<!--more-->
+
+<p>Of course, it will be impossible to cover everything in just one article. In this way, to keep things simple, we will have other articles to discuss this structure. However, this does not mean that what we are going to learn is not important! We will focus on the tree and binary search tree that are powerful concepts and that will help us to develop our knowledge to future articles! 👩‍💻👨‍💻</p>
+
+<p>But wait for a second! Before winter comes, if you are unfamiliar or need to remember some concepts about data structures, I highly recommend reading the most recents posts in this series.</p>
+
+<p>Now that you are ready for the winter, go ahead and may the Seven gods protect you in the game of thrones.</p>
+
+<p>Because winter is coming!</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/3ohzdUi5U8LBb4GD4s/giphy.gif" /></div>
+
+<blockquote>
+  <p>💭 “People have an enormous tendency to resist change. They love to say, ‘We’ve always done it this way’. I try to fight that.” - Grace Hopper</p>
+</blockquote>
+
+<h3 id="outline">Outline</h3>
+<ul>
+  <li>Basic concepts</li>
+  <li>Terminology</li>
+  <li>Types of Trees: Tree, Binary Tree and Binary Search Tree</li>
+  <li>The main operations and properties.</li>
+</ul>
+
+<h4 id="️-tree-">◼️ Tree 🌳</h4>
+
+<p>We can describe the simplest definition of tree structure by saying that it stores and manipulates elements hierarchically, and this is one of the biggest differences with other structures.</p>
+
+<p>So, let’s look at how this structure works using the following example:</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/5qwja9q07hm2irw12kys.jpg" /></div>
+
+<h6 id="figure-1-representation"><center>Figure 1: representation.</center></h6>
+
+<p>One of the first steps to understand the structure is to understand the main concepts. As we can see in the image above, each character in Stark House represents a node element in the tree structure. The node on the top is the Rickard Stark element and is called the root of the tree because it starts the structure and does not have a parent node.</p>
+
+<p>All elements that are under an element are represented as children, for instance, Eddard, Benjen, and Lyanna elements are related as children of the Rickard node and the link between a node to another, like Rickard and Eddard, is called an edge.</p>
+
+<p>Another thing to discuss in this picture is related to Robb, Sansa, Arya, Bran, Rickon, and Jon Snow (You know nothing!) elements, they represent leaves because they do not have children.</p>
+
+<p>Okay, the next step is to define the main class which is NodeTree, as you can see in the following code:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">NodeTree</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">descendents</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now we are going to create a simple example where we can add new values to the tree and then remove it. In this code, we create the Tree constructor that has the link to the root element and the number of nodes in the structure.</p>
+
+<p>Besides that, there is a function to insert a new value that we can specify where the value will be added. For instance, if the structure already has the root element, a new value will be added as a descendent node. However, we can specify the parent node of the new element. Another function is to remove a value from the structure that does a search on all child elements.</p>
+
+<p>Take a look at the code below:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Tree</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">add</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NodeTree</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">root</span><span class="p">){</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">descendents</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">NodeTree</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">currentRoot</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
+                <span class="nx">currentRoot</span><span class="p">.</span><span class="nx">descendents</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">NodeTree</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">remove</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">];</span>
+        <span class="k">while</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">descendents</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">descendents</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">key</span> <span class="o">===</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">node</span><span class="p">.</span><span class="nx">descendents</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">descendents</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="p">...</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="️-binnary-tree">◼️ Binnary Tree</h4>
+
+<p>As the name suggests, a binary tree it is a tree whose elements have at most 2 children, called left and right. Simple right?  We should keep in mind that every node is a representation of a subtree itself. That said, a node can have two subtrees.</p>
+
+<h4 id="️-binnary-search-tree-bst">◼️ Binnary Search Tree (BST)</h4>
+
+<p>Binary Search Tree is a rooted binary tree and each node store a key and can have two children like the binary tree. But what is the difference between them? An important thing to remember is that the root element must satisfy the property to be greater than all keys stored in the left sub-tree, and not greater than all keys in the right sub-tree which provides the efficient way of data sorting, searching and retriving.</p>
+
+<p>In general, the worst case of time complexity is O (h), where h is the height of the BST, because it depends on how many elements and the order we must go through.</p>
+
+<p>To implement a binary search tree we have to update the NodeTree class, in order to support the binary search tree property.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">NodeTree</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s take a look at the following image:</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/86vdv3m97ga3sbgmiafh.png" /></div>
+
+<h6 id="figure-2-binary-tree-representation"><center>Figure 2: Binary Tree representation.</center></h6>
+
+<h4 id="operations">Operations</h4>
+
+<p>Now we will learn some operation to build our structure.</p>
+
+<h5 id="--insert">- Insert</h5>
+
+<p>As we discussed above, the root element must be greater than all left subtree elements and smaller than right subtree and this must occurs to all elements in the structure. In this way, when a new element is inserted must be verified the value. When a value is less than the node’s key it must be added to the left sub-tree, otherwise it must be added to the right subtree. An important thing to get note is that duplicate nodes are not allowed in the tree.</p>
+
+<p>We implement a binary search tree using the class NodeTree. Here is how a binary search tree insertion might be:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NodeTree</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_insertNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="nx">_insertNode</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">,</span> <span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">key</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">key</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">left</span><span class="p">){</span>
+                    <span class="nx">currentNode</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NodeTree</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">_insertNode</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">right</span><span class="p">){</span>
+                    <span class="nx">currentNode</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NodeTree</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">_insertNode</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h5 id="--search">- Search</h5>
+
+<p>When we want to search for an element, we have to follow the same logic as the previous function. Remember that an element is searched from the root node if the value is less than the root node, then we must traverse to the left subtree, otherwise, the search will be directed to the right subtree. Once you understand how value is inserted, it becomes easier to create other functions, right?</p>
+
+<p>One of the main differences between this structure to the others is the fact that we can search for an element more quickly than the Linked List, but it is slower compared to arrays. This behavior can occur in the same way to insert and delete functions.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">search</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">){</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_search</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">_search</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">key</span> <span class="o">!=</span> <span class="nx">value</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">){</span>
+                    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_search</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_search</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h5 id="--delete">- Delete</h5>
+
+<p>To remove an element in the binary search tree, three are some of the possibilities that must be followed, which are:</p>
+
+<ul>
+  <li>If the value to be deleted is a leaf, then we just need to remove it from the tree.</li>
+  <li>When a node has only one child, in this case, we need to remove the value and copy the child to the node.</li>
+  <li>If a node element to be deleted has two children, it is necessary to find the inorder successor of the node.</li>
+</ul>
+
+<p>Below is an example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">delete</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">findNode</span><span class="p">(</span><span class="nx">value</span><span class="p">)){</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_delete</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">_delete</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">value</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">findParent</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">){</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_delete</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">value</span> <span class="o">&gt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">){</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_delete</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
+                <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
+                <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span> 
+            <span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_delete</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>⚡️ The binary Search Tree is a extend topic to discuss and learn, if you would like to learn others functions that I implemented such as listLeafNodes, findParent, findMaximum, findMinimum and others, you can access all the code just clicking <a href="https://github.com/FernandoBLima/data-structures">here</a>.</p>
+</blockquote>
+
+<h4 id="types-of-binary-trees">Types of binary trees</h4>
+
+<p>Okay, now that we already understand the main operations in a binary search tree, we can move on and discuss some other properties. We can classify the binary search tree into the following types of Binary Trees:</p>
+
+<ul>
+  <li>Full Binary Tree</li>
+</ul>
+
+<p>It is considered a full binary tree if all nodes, except the leaves, have two children. The following image shows an example of a full binary tree.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/oewh4m69vh1yglupbcaz.png" /></div>
+
+<h6 id="figure-3-a-full-binary-tree-example-"><center>Figure 3: A full binary tree example </center></h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nx">isFull</span><span class="p">(){</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">==</span> <span class="kc">null</span> <span class="p">)</span> 
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_isFull</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">_isFull</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">==</span> <span class="kc">null</span> <span class="p">)</span> 
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> 
+
+        <span class="k">if</span> <span class="p">((</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">||</span>
+            <span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">))</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> 
+
+        <span class="k">if</span><span class="p">((</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">))</span> 
+            <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_isFull</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_isFull</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">));</span>    
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Complete Binary Tree</li>
+</ul>
+
+<p>Here, we can say that a Binary Tree is complete when all levels are full, the only exception being the last level.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/oewh4m69vh1yglupbcaz.png" /></div>
+
+<h6 id="figure-4-a-complete-binary-tree-example-"><center>Figure 4: A complete binary tree example </center></h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">isComplete</span><span class="p">(){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>         
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> 
+        <span class="kd">let</span> <span class="nx">numberNodes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">countNode</span><span class="p">();</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_isComplete</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">numberNodes</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">_isComplete</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">numberNodes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>         
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> 
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;=</span> <span class="nx">numberNodes</span><span class="p">)</span> 
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> 
+
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_isComplete</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">numberNodes</span><span class="p">)</span> 
+            <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_isComplete</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">numberNodes</span><span class="p">));</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Perfect Binary Tree</li>
+</ul>
+
+<p>When a binary tree is complete and full at the same time, it is considered a Perfect Binary Tree, which means that all levels have elements and all leaf nodes are at the same level.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/mmrzoc15yk7lfzkrjcan.png" /></div>
+
+<h6 id="figure-5-a-perfect-binary-tree-example-"><center>Figure 5: A perfect binary tree example </center></h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nx">isPerfect</span><span class="p">()</span> <span class="p">{</span>  
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>  
+        <span class="kd">let</span> <span class="nx">leftMostLeaf</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">leftMostLeaf</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>  
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_isPerfect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">leftMostLeaf</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  
+    <span class="p">}</span>  
+
+    <span class="nx">leftMostLeaf</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="kd">let</span> <span class="nx">depth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+        <span class="k">while</span> <span class="p">(</span><span class="nx">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>  
+        <span class="p">{</span>  
+            <span class="nx">depth</span><span class="o">++</span><span class="p">;</span>  
+            <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>  
+        <span class="p">}</span>  
+        <span class="k">return</span> <span class="nx">depth</span><span class="p">;</span>  
+    <span class="p">}</span>  
+
+    <span class="nx">_isPerfect</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">level</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>  
+    
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  
+            <span class="k">return</span> <span class="p">(</span><span class="nx">d</span> <span class="o">==</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>  
+    
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>  
+    
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_isPerfect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_isPerfect</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>  
+    <span class="p">}</span>  
+</code></pre></div></div>
+
+<h4 id="binary-tree-traversal">Binary Tree Traversal</h4>
+
+<p>We can visit all nodes in a tree differently, generally, it starts at the root node to search or locate a particular tree, or to print all the values it contains. With this concept in mind, let’s take a look at in the most commons ways to traverse a binary tree.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/86vdv3m97ga3sbgmiafh.png" /></div>
+
+<h6 id="figure-5-a-binary-search-tree-example-"><center>Figure 5: A binary search tree example </center></h6>
+
+<ul>
+  <li>Pre-order</li>
+</ul>
+
+<p>In this function, the order that we must follow is to visit the root node first, and then go through all elements on the left subtree and the right subtree of the root.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Root -&gt; Left Tree -&gt; Right Tree
+</code></pre></div></div>
+
+<p>As I said before, every node is a representation of a subtree itself. With that in mind, when a leaf node is located, which has no left and right subtree, we say that it has been completely traversed. As a consequence, the right node of the subtree will be visited. This process occurs until all elements are visited.</p>
+
+<p>PreOrder traversal : [ 100, 50, 25, 75, 150, 125, 175 ].</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">preOrder</span><span class="p">(){</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> 
+        <span class="kd">var</span> <span class="nx">listValues</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_preOrder</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span> 
+    <span class="p">}</span> 
+
+    <span class="nx">_preOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">key</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="nx">listValues</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_preOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_preOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">listValues</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>In-order</li>
+</ul>
+
+<p>In this traversal method, its traverse to the left subtree first by recursively. At first, it visited all elements of the left subtree of the root, then the node root and all elements of the right subtree.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Left Tree -&gt; Root -&gt; Right Tree
+</code></pre></div></div>
+
+<p>Inorder traversal : [ 25, 50, 75, 100, 125, 150, 175 ].</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">inOrder</span><span class="p">(){</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> 
+        <span class="kd">var</span> <span class="nx">listValues</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_inOrder</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span> 
+    <span class="p">}</span> 
+
+    <span class="nx">_inOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_inOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">key</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="nx">listValues</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_inOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">listValues</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Post-order</li>
+</ul>
+
+<p>In this method, we traverse the left subtree, the right subtree, and the root node.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Left Tree -&gt; Right Tree -&gt; Root
+</code></pre></div></div>
+
+<p>Post-order traversal: [ 25, 75, 50, 125, 175, 150, 100 ].</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">posOrder</span><span class="p">(){</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> 
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> 
+        <span class="kd">var</span> <span class="nx">listValues</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_posOrder</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span> 
+    <span class="p">}</span> 
+
+    <span class="nx">_posOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_posOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_posOrder</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">listValues</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">key</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="nx">listValues</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">listValues</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Level order</li>
+</ul>
+
+<p>Another important way to traverse in a tree is the level-order that visits every node on a level before going to a lower level.</p>
+
+<p>Level order: [ 100, 50, 150, 25, 75, 125, 175 ].</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nx">levelOrderQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        
+        <span class="kd">var</span> <span class="nx">listOrderQueue</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="nx">listOrderQueue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">listValues</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nx">listOrderQueue</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">listOrderQueue</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+                <span class="nx">listOrderQueue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+                <span class="nx">listOrderQueue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
+            
+            <span class="nx">listValues</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">key</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">listValues</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>That’s all, folks! I hope you are taking care of Yourself 😁</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/qNnQAESrblfDG/giphy.gif" /></div>
+
+<p>Code: https://github.com/FernandoBLima/data-structures</p>
+
+<hr />
+
+<p><em>So we finished our discussion about Tree and Binary Search Tree structure.</em> 🙌</p>
+
+<p><em>I hope you have a clear idea how to work. If you found this article helpful or if you find something I miss out or that you like it, feel free to let me know.</em> 😁</p>
+
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2020/04/21/data-structure-part-V.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2020/04/21/data-structure-part-V.html&text=Tree+and+Binary+Search+Tree+-+Data+Structure+%26+Algorithm+Part+V%20%7C%20Fernandoblima:%20http://localhost:4000/2020/04/21/data-structure-part-V.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+             
+        <li>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2020/04/21/data-structure-part-V.html&title=Tree+and+Binary+Search+Tree+-+Data+Structure+%26+Algorithm+Part+V%20%7C%20Fernandoblima&summary=&source=http://localhost:4000/2020/04/21/data-structure-part-V.html" target="_blank" title="Share on LinkedIn">
+			<i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on LinkedIn</span>
+		</a>
+        </li>
+          
+        <li>
+            <a href="mailto:?subject=Tree+and+Binary+Search+Tree+-+Data+Structure+%26+Algorithm+Part+V%20%7C%20Fernandoblima&body=:%20http://localhost:4000/2020/04/21/data-structure-part-V.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+  <section style="text-align: left !important">
+    <!-- Tag list -->
+   
+   
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button tag-post" href="/tags#Algorithm">
+      <p><i class="fa fa-tag fa-fw"></i> Algorithm</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Data+Structure">
+      <p><i class="fa fa-tag fa-fw"></i> Data Structure</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Javascript">
+      <p><i class="fa fa-tag fa-fw"></i> Javascript</p>
+    </a>
+    
+  </div>
+</footer>
+
+  </section>
+
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    
+
+    <div id="next-post">
+        <p>Previous post</p>
+        <a alt="Disjoint Set - Data Structure Part IV" href="/2020/03/04/data-structure-part-IV.html">
+            Disjoint Set - Data Structure Part IV
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  
+  header#main {
+    background-repeat:no-repeat;
+    background-image: url('');
+  }
+</style>
+    </div>
+    
+<footer class="site-footer">
+
+    <!-- <span><b>Fernando Baptistella</b></span>
+    
+    <span>© 2020</span> -->
+
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/fernandoblima" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/fernando-baptistella/" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>
