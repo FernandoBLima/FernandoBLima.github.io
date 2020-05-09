@@ -7,7 +7,7 @@
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
         <link>http://localhost:4000/</link>
         <description>My personal blog</description>
-        <pubDate>Sat, 09 May 2020 19:36:33 -0300</pubDate>
+        <pubDate>Sat, 09 May 2020 19:45:13 -0300</pubDate>
         <webfeeds:icon>http://localhost:4000/assets/img/triangle.png</webfeeds:icon>
         
         <item>
