@@ -16,14 +16,20 @@
               </a>
             </h1>
             {% include post_info.html post=post %}
+                {% if site.reading_time %} <i class="meta fa fa-clock-o"> </i> 
+                {% assign wpm = site.words_per_minute | append: '.0' %}
+                {% assign readtime = post.content | strip_html | number_of_words | divided_by:wpm | round %}
+                <span class="meta"> ~{% if readtime <= 1 %}1 minute{% else %}{{ readtime }} min {% endif %} read</span>
+              {% endif %}
 
             <!-- Tag list -->
             {% capture tag_list %}{{ post.tags | join: "|"}}{% endcapture %}
             {% include tags_list.html tags=tag_list %}
 
           </header>
+          
           {% if site.theme_settings.excerpt %}
-              <div class="excerpt">
+          <div class="excerpt">
                   {% if site.theme_settings.excerpt == "truncate" %}
                      {{ post.content | strip_html | truncate: '250' | escape }}
                   {% else %}
