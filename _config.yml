@@ -13,6 +13,10 @@ defaults:
     values:
       image: assets/img/triangle.png # seo tag
 
+# reading time
+reading_time: true
+words_per_minute: 200
+
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
