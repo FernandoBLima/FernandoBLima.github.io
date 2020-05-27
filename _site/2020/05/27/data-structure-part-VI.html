@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Hello there! This is my personal blog and offers me a space to write down and share the things I’m searching and learning.">
+    <meta name="keywords" content="personal, portfolio, resume">
+    <meta name="author" content="Fernando Baptistella">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/vendor/bootstrap.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/2020/05/27/data-structure-part-VI.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Fernandoblima" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+     <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Trie - Data Structure &amp; Algorithm Part VI | Fernandoblima</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Trie - Data Structure &amp; Algorithm Part VI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this post our main goal is to understand the Trie Data Structure, learning the concepts, how it works, and how to implement it (a.k.a code!)." />
+<meta property="og:description" content="In this post our main goal is to understand the Trie Data Structure, learning the concepts, how it works, and how to implement it (a.k.a code!)." />
+<link rel="canonical" href="http://localhost:4000/2020/05/27/data-structure-part-VI.html" />
+<meta property="og:url" content="http://localhost:4000/2020/05/27/data-structure-part-VI.html" />
+<meta property="og:site_name" content="Fernandoblima" />
+<meta property="og:image" content="http://localhost:4000/assets/img/triangle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-27T00:00:00-03:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2020/05/27/data-structure-part-VI.html","headline":"Trie - Data Structure &amp; Algorithm Part VI","dateModified":"2020-05-27T00:00:00-03:00","datePublished":"2020-05-27T00:00:00-03:00","description":"In this post our main goal is to understand the Trie Data Structure, learning the concepts, how it works, and how to implement it (a.k.a code!).","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/05/27/data-structure-part-VI.html"},"image":"http://localhost:4000/assets/img/triangle.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Trie - Data Structure & Algorithm Part VI | Fernandoblima</title>
+    <meta name="description" content="In this post our main goal is to understand the Trie Data Structure, learning the concepts, how it works, and how to implement it (a.k.a code!).">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+		<!-- <a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a> -->
+
+		<h1 class="site-title">
+			<a aria-label="Fernandoblima" href="/">
+        Fernandoblima
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Curriculum" title="Curriculum" href="/curriculum/">
+                     Curriculum 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fa fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="">
+    
+      <h1 id="Trie+-+Data+Structure+%26+Algorithm+Part+VI" class="title">Trie - Data Structure & Algorithm Part VI</h1>
+      
+
+<div class="post-info"><!-- 
+      <img src="/assets/img/avatars/zdff.jpg">
+     -->
+    <p class="meta">
+      Fernando B. Lima - May 27, 2020  | 
+    </p></div>
+
+    
+    <p class="meta"> <br>
+       <i class="fa fa-clock-o"></i> 
+
+ ~7 min  read
+ 
+    </p>
+  </header>
+
+  <section class="post-content">
+  
+      <p>In this post our main goal is to understand the Trie Data Structure, learning the concepts, how it works, and how to implement it (a.k.a code!).</p>
+
+<!--more-->
+
+<p>It is important to understand the tree structure before diving into the trie. So, if you need to, you can read the last post about the <a href="https://fernandoblima.github.io/2020/04/21/data-structure-part-V.html">tree and binary search tree</a>.</p>
+
+<p>Moving on, let’s discuss the data structure journey! 😁</p>
+
+<blockquote>
+  <p>💭 “Those hours of practice, and failure, are a necessary part of the learning process.”- Gina Sipley</p>
+</blockquote>
+
+<hr />
+
+<h3 id="outline">Outline</h3>
+<p>The article is divided into the following parts:</p>
+<ul>
+  <li>Understanding the Trie structure;</li>
+  <li>The main operations</li>
+</ul>
+
+<h4 id="️-trie">◼️ Trie</h4>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Pre-requisite : Tree</li>
+</ul>
+
+<p>We can say that the trie structure stores a set of strings that can be visualized like a tree where each node is a character. This structure is stored in a top to the bottom manner and the order that appears is based on the prefix of a string that all the descendants’ nodes have in common.</p>
+
+<p>But what do I mean about prefix? 🧐</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/a5viI92PAF89q/giphy.gif" /></div>
+
+<p>Let’s consider using the word ‘Batman’ for the set S of n strings to clarify our mind.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">S1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">B</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">m</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">n</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>First all, the root of the structure is started with a node with value <code class="highlighter-rouge">ε</code> that represents the empty string. The next inserted node has the first value in the set S1 that is ‘B’. Then, the next node to be used is the value ‘a’ and so on.</p>
+
+<p>As we can see, each node can have several child values ​​(or not). At most, the size of the alphabet that the children are connected to, in our case can have up to 26 children.</p>
+
+<p>So, let’s see an example using the word that we are discussing.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/3tn85tii8fieevlcrg05.png" /></div>
+
+<h6 id="figure-1-inserted-a-new-word"><center>Figure 1: Inserted a new word</center></h6>
+
+<p>Great! Let’s use this structure and add a new set that has the word ‘Bat’, using as the set S2 of n strings.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">S2</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">B</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">t</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here, the first letter ‘B’ of the set S2 has already been inserted in the first node. Therefore, we do not have to create another node, and the same happens to the letters ‘a’ and ‘t’. As a consequence, just need to mark the letter ‘t’ as the end of a word.</p>
+
+<p>See the next figure below that shows a trie with the words “Batman” and “Bat”.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/8jdjndvqyat26xc02ypy.png" /></div>
+
+<h6 id="figure-2-inserting-a-word-that-already-have-the-as-prefix-in-the-structure"><center>Figure 2: Inserting a word that already have the as prefix in the structure</center></h6>
+
+<p>What’s happens if we add the word ‘Batgirl’?</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">S3</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">B</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">g</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">l</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>As we discussed earlier, the structure already have the letters ‘B’, ‘a’, and ‘t’. So, just needs to create the node for other words. See below:</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/f4zqms4k8ra4nmone688.png" /></div>
+
+<h6 id="figure-3-inserting-a-word-that-already-have-a-prefix-"><center>Figure 3: Inserting a word that already have a prefix </center></h6>
+
+<p>What if we add a word that starts with a different letter instead of ‘B’? Don’t worry, just need to insert a new node with a value. In this example, we will add the word ‘Joker’, in this way, the letter ‘J’ will be added after the node that represents the empty string. Keep in mind, don’t forget to mark the last letter at the end of the word.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/qkaasdw2wd93dpiolv82.png" /></div>
+
+<p>This happens with other words that can be added to our structure, such as Penguin, Ivy, Two-Face, and so on.</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/8fbeFbshnfyJW/giphy.gif" /></div>
+
+<h6 id="figure-4-inserting-a-word-that-start-with-a-different-first-letter"><center>Figure 4: Inserting a word that start with a different first letter</center></h6>
+
+<p>After all, why should we use this structure? Why not use the tree structure? Well, the trie structure is faster compared to the tree and hash table because we do not need to calculate any hash functions or worry about dealing with collisions.</p>
+
+<p>Awesome! Now that we understand the behaviors and how we can add values, let’s build our structure. At first, we need to create our main class.</p>
+
+<p>Talk is cheap. Let’s see the code. 😁</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">TrieNode</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">isEnd</span><span class="p">,</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">isEndOfWord</span> <span class="o">=</span> <span class="nx">isEnd</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">character</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Trie</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TrieNode</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="dl">'</span><span class="s1">*</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="p">...</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Each TrieNode represents a letter in the structure and has the following parameters:</p>
+<ul>
+  <li>children: As we discussed above, there can be more than one child.</li>
+  <li>isEndOfWord: Represents if the letter is the end of the word.</li>
+  <li>character: Is the node value.</li>
+</ul>
+
+<p>Done! 😁</p>
+
+<p>But not entirely! We need to create and add methods to our class. The implementation of insert, search and delete functions are a simpler way to implement these functions using Javascript, and all of these operations have the complexity of time O(L) where L is length of key.</p>
+
+<p>Let’s check out:</p>
+
+<ul>
+  <li>Insert</li>
+</ul>
+
+<p>As mentioned earlier, this structure starts with a node that represents the empty string. We have to insert the first character of the set of strings, but if the value to be inserted has already been added, we just have to get down to the next level and continue to add the following values from the set.</p>
+
+<p>However, if at some point there is no node, we will have to create and continue the process until the whole set is inserted, and of course, mark the last value of the set as the end of the word node. The space complexity of this structure in the worst case is when the word to be inserted is higher than the maximum number of nodes in the structure.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">insert</span><span class="p">(</span><span class="nx">key</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">currentValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+        
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">key</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">currentValue</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">currentValue</span> <span class="o">=</span> <span class="nx">currentValue</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">];</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
+                <span class="kd">const</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TrieNode</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">element</span><span class="p">);</span>
+                <span class="nx">currentValue</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">]</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+                <span class="nx">currentValue</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">currentValue</span><span class="p">.</span><span class="nx">isEndOfWord</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Search</li>
+</ul>
+
+<p>Searching a string in this structure is a simple approach, we just have to iterate all characters of the set starting at the root and checking if the value matches and moving down to the next node. If the last letter used in the process is marked as the last node, then the set belongs to the searched word.</p>
+
+<p>However, we can say that the set S is not present in the trie when:</p>
+<ul>
+  <li>There is no transition for children nodes and there is still a letter in the set.</li>
+  <li>If all the letters have been consumed and the last node in the process does not correspond to the string.</li>
+  <li>Or all characters exist in the structure, but the last letter is not marked as the end of the word node.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">searchWord</span><span class="p">(</span><span class="nx">key</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">currentValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">key</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">currentValue</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">currentValue</span> <span class="o">=</span> <span class="nx">currentValue</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">];</span>
+            <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">currentValue</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Suggestion Word</li>
+</ul>
+
+<p>The main goal of this function is to show all words that have a prefix in common. At the beginning, is searched if the set of string already has been inserted in the structure and returns a list that contains all words that contain the word as a prefix.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <span class="nx">suggestionWord</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">word</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">searchWord</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">word</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">suggestions</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">word</span><span class="p">.</span><span class="nx">isEndOfWord</span><span class="p">){</span>
+                <span class="nx">suggestions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_suggestionWord</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">suggestions</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">[];</span>
+    <span class="p">}</span>
+
+
+    <span class="nx">_suggestionWord</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">lastWord</span><span class="p">,</span> <span class="nx">suggestions</span><span class="p">){</span>
+
+        <span class="kd">var</span> <span class="nx">letters</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">);</span> 
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">letters</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">letters</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">].</span><span class="nx">isEndOfWord</span><span class="p">){</span>
+                <span class="nx">suggestions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">lastWord</span> <span class="o">+</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">].</span><span class="nx">character</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_suggestionWord</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">],</span> <span class="nx">lastWord</span> <span class="o">+</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">].</span><span class="nx">character</span><span class="p">,</span> <span class="nx">suggestions</span><span class="p">);</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">rest</span> <span class="o">=</span> <span class="nx">lastWord</span> <span class="o">+</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">].</span><span class="nx">character</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_suggestionWord</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">element</span><span class="p">],</span> <span class="nx">rest</span><span class="p">,</span> <span class="nx">suggestions</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">suggestions</span><span class="p">;</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>Remove</li>
+</ul>
+
+<p>In this function, the word is removed from the structure if contains the prefix and does not have any other words that use as a prefix.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">remove</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">key</span><span class="p">)){</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_removeNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="p">,</span><span class="nx">key</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">_removeNode</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">keySlice</span> <span class="p">,</span><span class="nx">key</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">letter</span> <span class="o">=</span> <span class="nx">key</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">letter</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">current</span><span class="p">){</span>
+            <span class="nx">keySlice</span> <span class="o">=</span> <span class="nx">key</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">key</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">shouldRemove</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_removeNode</span><span class="p">(</span><span class="nx">current</span><span class="p">,</span> <span class="nx">keySlice</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">shouldRemove</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">hasChild</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">letter</span><span class="p">].</span><span class="nx">children</span><span class="p">)){</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+                <span class="k">delete</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">letter</span><span class="p">];</span>
+                <span class="nx">key</span> <span class="o">=</span> <span class="nx">keySlice</span><span class="p">;</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+<hr />
+
+<p>That’s all folks! I hope you have fun learning. 😁</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/5DQdk5oZzNgGc/giphy.gif" /></div>
+
+<p>Code: https://github.com/FernandoBLima/data-structures</p>
+
+<hr />
+
+<p><em>So we finished our discussion about Trie structure.</em> 🙌</p>
+
+<p><em>I hope you have a clear idea how to work. If you found this article helpful or if you find something I miss out or that you like it, feel free to let me know.</em> 😁</p>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2020/05/27/data-structure-part-VI.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2020/05/27/data-structure-part-VI.html&text=Trie+-+Data+Structure+%26+Algorithm+Part+VI%20%7C%20Fernandoblima:%20http://localhost:4000/2020/05/27/data-structure-part-VI.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+             
+        <li>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2020/05/27/data-structure-part-VI.html&title=Trie+-+Data+Structure+%26+Algorithm+Part+VI%20%7C%20Fernandoblima&summary=&source=http://localhost:4000/2020/05/27/data-structure-part-VI.html" target="_blank" title="Share on LinkedIn">
+			<i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on LinkedIn</span>
+		</a>
+        </li>
+          
+        <li>
+            <a href="mailto:?subject=Trie+-+Data+Structure+%26+Algorithm+Part+VI%20%7C%20Fernandoblima&body=:%20http://localhost:4000/2020/05/27/data-structure-part-VI.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+  <section style="text-align: left !important">
+    <!-- Tag list -->
+   
+   
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button tag-post" href="/tags#Algorithm">
+      <p><i class="fa fa-tag fa-fw"></i> Algorithm</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Data+Structure">
+      <p><i class="fa fa-tag fa-fw"></i> Data Structure</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Javascript">
+      <p><i class="fa fa-tag fa-fw"></i> Javascript</p>
+    </a>
+    
+  </div>
+</footer>
+
+  </section>
+
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    
+
+    <div id="next-post">
+        <p>Previous post</p>
+        <a alt="Tree and Binary Search Tree - Data Structure & Algorithm Part V" href="/2020/04/21/data-structure-part-V-copy.html">
+            Tree and Binary Search Tree - Data Structure & Algorithm Part V
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  
+  header#main {
+    background-repeat:no-repeat;
+    background-image: url('');
+  }
+</style>
+    </div>
+    
+<footer class="site-footer">
+
+    <span><b>Fernando Baptistella</b></span>
+    
+    <span>© 2020</span>
+
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/fernandoblima" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/fernando-baptistella/" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>
