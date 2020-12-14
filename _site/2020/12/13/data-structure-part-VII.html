@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Hello there! This is my personal blog and offers me a space to write down and share the things I’m searching and learning.">
+    <meta name="keywords" content="personal, portfolio, resume">
+    <meta name="author" content="Fernando Baptistella">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/vendor/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/2020/12/13/data-structure-part-VII.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Fernandoblima" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+     <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Heap - Data Structure &amp; Algorithm Part VII | Fernandoblima</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Heap - Data Structure &amp; Algorithm Part VII" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="It’s been a while since the last post in this series. I was very busy with other things, but I’m back! Yes! 😁 In this post, we will continue to learn a new data structure and how to implement it. 👨‍💻👩‍💻" />
+<meta property="og:description" content="It’s been a while since the last post in this series. I was very busy with other things, but I’m back! Yes! 😁 In this post, we will continue to learn a new data structure and how to implement it. 👨‍💻👩‍💻" />
+<link rel="canonical" href="http://localhost:4000/2020/12/13/data-structure-part-VII.html" />
+<meta property="og:url" content="http://localhost:4000/2020/12/13/data-structure-part-VII.html" />
+<meta property="og:site_name" content="Fernandoblima" />
+<meta property="og:image" content="http://localhost:4000/assets/img/triangle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-13T00:00:00-03:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2020/12/13/data-structure-part-VII.html","headline":"Heap - Data Structure &amp; Algorithm Part VII","dateModified":"2020-12-13T00:00:00-03:00","datePublished":"2020-12-13T00:00:00-03:00","description":"It’s been a while since the last post in this series. I was very busy with other things, but I’m back! Yes! 😁 In this post, we will continue to learn a new data structure and how to implement it. 👨‍💻👩‍💻","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/12/13/data-structure-part-VII.html"},"image":"http://localhost:4000/assets/img/triangle.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Heap - Data Structure & Algorithm Part VII | Fernandoblima</title>
+    <meta name="description" content="It’s been a while since the last post in this series. I was very busy with other things, but I’m back! Yes! 😁 In this post, we will continue to learn a new d...">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+		<!-- <a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a> -->
+
+		<h1 class="site-title">
+			<a aria-label="Fernandoblima" href="/">
+        Fernandoblima
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Curriculum" title="Curriculum" href="/curriculum/">
+                     Curriculum 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fa fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="">
+    
+      <h1 id="Heap+-+Data+Structure+%26+Algorithm+Part+VII" class="title">Heap - Data Structure & Algorithm Part VII</h1>
+      
+
+<div class="post-info"><!-- 
+      <img src="/assets/img/avatars/zdff.jpg">
+     -->
+    <p class="meta">
+      Fernando B. Lima - December 13, 2020  | 
+    </p></div>
+
+    
+    <p class="meta"> <br>
+       <i class="fa fa-clock-o"></i> 
+
+ ~7 min  read
+ 
+    </p>
+  </header>
+
+  <section class="post-content">
+  
+      <p>It’s been a while since the last post in this series. I was very busy with other things, but I’m back! Yes! 😁 In this post, we will continue to learn a new data structure and how to implement it. 👨‍💻👩‍💻</p>
+
+<!--more-->
+
+<blockquote>
+  <p>💭  <em>“Falling in love with code means falling in love with problem solving and being a part of a forever ongoing conversation. To be a computer programmer does not mean to live in isolation and solitude, but rather the exact opposite.”</em> - Kathryn Barrett</p>
+</blockquote>
+
+<hr />
+
+<h3 id="outline">Outline</h3>
+<ul>
+  <li>What is a Heap?</li>
+  <li>Basic concepts</li>
+  <li>The main operations and properties.</li>
+</ul>
+
+<p>Let’s start to work! 😃</p>
+
+<h2 id="️-trie">◼️ Trie</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Pre-requisite : Tree</li>
+</ul>
+
+<blockquote>
+  <p>If you haven’t read <a href="https://dev.to/fernandoblima/tree-and-binary-search-tree-data-structure-algorithm-part-v-1pmo">tree and binary search tree</a>, I recommend you check it out first!</p>
+</blockquote>
+
+<h3 id="--what-is-a-heap-">- What is a Heap? 🧐</h3>
+
+<p>If you’ve seen how the heap structure organize values, you might think that there is some similarities to the tree structure. Yes, indeed. Basically, we can define a heap structure as a special full binary tree structure where each element has exactly two children, the only exception can be the deepest level.</p>
+
+<p>One important thing to keep in mind about this structure is that there are two types of heap and the differences between them are related to the property of storing a value, which can be:</p>
+
+<ul>
+  <li>Max-heap: The root element has the maximum value and the value for every element is equal or greater than the value in the node’s children.</li>
+</ul>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/9zi6rpauopq1p0csz5co.png" /></div>
+
+<h6 id="figure-1-max-heap-representation"><center>Figure 1: Max-heap representation.</center></h6>
+
+<ul>
+  <li>Min-heap: Here we have the opposite side because the root element has the minimum value and the value for every element is equal to or less than the value in the node’s children.</li>
+</ul>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/xbuq3rcg0jzaey93apbk.png" /></div>
+
+<h6 id="figure-2-min-heap-representation"><center>Figure 2: Min-heap representation.</center></h6>
+
+<p>As we can see, every element can be actually called as the root of its own sub-heap. For instance, using min-heap example given above we can say that the value 8 is the root of 7 and 3 sub-heap.</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/iz4txtrywzuh9q1r9vbq.png" /></div>
+
+<h6 id="figure-3-example-of-sub-heap"><center>Figure 3: Example of sub-heap.</center></h6>
+
+<p>After describing the basics and understanding what the heap is, how do we create this data structure? First things first, let’s start building the constructor.</p>
+
+<p>So, you may be thinking and assuming based on the last post about tree structure that we could implement a simple class that contains left and right elements, right? 🧐</p>
+
+<p>You are absolutely right! 😃 We can certainly implement it that way, however, there is another and better approach that we can use to create an efficient way of implementing it.</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/5wWf7GR2nhgamhRnEuA/giphy.gif" /></div>
+
+<p>Instead of creating theses elements, we can use an array to store all the heap values, simple right? In this way, we just need to store all the values top to bottom, left to right, and that’s it! Using this approach, we can know that the fifth value in the array will be the fifth value in the heap, for instance.</p>
+
+<p>Let’s use the min-heap example used above and take a look at the following image:</p>
+
+<div style="text-align:center"><img src="https://dev-to-uploads.s3.amazonaws.com/i/wd36j7qelaac9we5e4e3.png" /></div>
+
+<h6 id="figure-3-array-heap-representation"><center>Figure 3: Array-heap representation.</center></h6>
+
+<p>The use of array indexes can describe the parent-child structure. But, wait! ✋ What that’s mean? 🤔 Looking at the element, we can get the left child element by Arr[(2*i)+1] that returns the value. And the parent and right element? Let’s take a look below:</p>
+
+<ul>
+  <li>Index of element = i</li>
+  <li>Returns the left child element = Arr[(2*i)+1]</li>
+  <li>Returns the right child element = Arr[(2*i)+2]</li>
+  <li>Returns the parent element = Arr[i/2]</li>
+</ul>
+
+<p>For example, let’s use the value X in the array, which is  the third element of the structure. To get the parent value, we just have to get the index value and divided by 2. Simple right? That said, understanding how we can access these values will be extremely important in the next function in the heap structure.</p>
+
+<p>Now that we’re on the same page, let’s move on and put everything that we’ve learned into our code. First, we need to create the skeleton of our heap class.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Heap</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="basic-operations">Basic operations</h2>
+
+<p>Okay, now that we already know how to build the heap structure let’s diving into the main operations.</p>
+
+<p>Talk is cheap. Show me the code! 😁</p>
+
+<p>◼️ Insert</p>
+
+<p>To insert a new element it is necessary to find the first available space in the structure looking for an empty spot from top to bottom and left to right order.</p>
+
+<p>After that, it may be necessary to rearrange the structure, this process will compare the value inserted with the parent value based on the type of heap. The elements should be swap if not follow the heap property and continue to bubble until find the right spot in the structure.</p>
+
+<p>In this function, we might have to make a comparison at each level of the structure and then swap the elements until the root element. Every time a new value goes up it takes O(1) time. So, the worst-case time complexity is O(nlg n) because we insert the value at the end of the heap and traverse up.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">childrenIndex</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+
+      <span class="k">while</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">hasParentByIndex</span><span class="p">(</span><span class="nx">childrenIndex</span><span class="p">)){</span>
+          <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shouldSwap</span><span class="p">(</span><span class="nx">childrenIndex</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">getParentByIndex</span><span class="p">(</span><span class="nx">childrenIndex</span><span class="p">))){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">swapElements</span><span class="p">(</span><span class="nx">childrenIndex</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">getParentByIndex</span><span class="p">(</span><span class="nx">childrenIndex</span><span class="p">));</span>
+            <span class="nx">childrenIndex</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getParentByIndex</span><span class="p">(</span><span class="nx">childrenIndex</span><span class="p">);</span>
+          <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+             <span class="k">break</span><span class="p">;</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>⚡️ If you would like to learn others functions that I implemented you can access all the code just clicking <a href="https://github.com/FernandoBLima/data-structures">here</a>.</p>
+</blockquote>
+
+<p>◼️ Deletion</p>
+
+<p>In the Heap, we remove the root element of the structure and then replace it with the last value added. As you may be thinking, the new root element might probably not be in the right position. To solve this problem it is necessary call the heapify function, which is the most critical operation in this structure where it reorganize the values until the heap property is satisfied.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">removeFromTop</span><span class="p">(){</span>
+     <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">The Heap is Empty</span><span class="dl">'</span><span class="p">);</span>
+     <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getSize</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">swapToRemove</span><span class="p">();</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">heapify</span><span class="p">();</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">swapToRemove</span><span class="p">(){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">swapElements</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">element</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">swapElements</span><span class="p">(</span><span class="nx">childrenIndex</span><span class="p">,</span> <span class="nx">parentIndex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">tmp</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">parentIndex</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">parentIndex</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">childrenIndex</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">childrenIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">tmp</span><span class="p">;</span>
+<span class="p">}</span>  
+</code></pre></div></div>
+
+<p>Using a top-down approach, this function will bubble it down comparing the new root element and the left and right child, then swap elements according to the type of heap and repeat the process until the new root element finds a valid spot and the heap property has been satisfied.</p>
+
+<p>Let’s see how we can put theses words in a code.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">heapify</span><span class="p">(</span><span class="nx">index</span><span class="o">=</span><span class="mi">0</span><span class="p">){</span>
+     <span class="kd">let</span> <span class="nx">left</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getLeftChildrenIndex</span><span class="p">(</span><span class="nx">index</span><span class="p">),</span>
+         <span class="nx">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getRightChildrenIndex</span><span class="p">(</span><span class="nx">index</span><span class="p">),</span>
+         <span class="nx">largest</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
+
+     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">left</span><span class="p">])</span> <span class="k">return</span><span class="p">;</span>
+
+     <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shouldSwap</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">largest</span><span class="p">)</span> <span class="p">){</span>
+         <span class="nx">largest</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">shouldSwap</span><span class="p">(</span><span class="nx">right</span><span class="p">,</span> <span class="nx">largest</span><span class="p">)</span> <span class="p">){</span>
+         <span class="nx">largest</span> <span class="o">=</span> <span class="nx">right</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="k">if</span><span class="p">(</span><span class="nx">largest</span> <span class="o">!==</span> <span class="nx">index</span><span class="p">){</span>
+        <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">largest</span><span class="p">],</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">index</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">largest</span><span class="p">]];</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">heapify</span><span class="p">(</span><span class="nx">largest</span><span class="p">);</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>We can say that the main point of heapify function it to make sure that the structure follows the heap propriety by  comparing the elements and the child elements.</p>
+
+<p>The time complexity for swap element in each level is O(1) and the worst-case time is O(lg n) and it depends on how far an element can move down, which is related of the height of the heap. In the worst case, the element might go down all the way to the leaf level.</p>
+
+<blockquote>
+  <p>⚡️ If you would like to learn others functions that I implemented you can access all the code just clicking <a href="https://github.com/FernandoBLima/data-structures">here</a>.</p>
+</blockquote>
+
+<p>◼️ Merge heaps</p>
+
+<p>To merge two existing heap into a single one can be done by all values moved from the smallest heap to the largest using the insert function. Hovever, isn’t the best way because involves moving N items and rearranging at cost 0(log n), giving an overall time complexity of O(nlog n).</p>
+
+<p>The best approach is just concatenate the values of two heaps and then use heapify algorithm, as we can see below:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mergeHeaps</span><span class="p">(</span><span class="nx">heap</span><span class="p">){</span>
+     <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+         <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> 
+     <span class="p">}</span> 
+     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">heap</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+         <span class="nx">array</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">size</span> <span class="o">+</span> <span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">heap</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> 
+     <span class="p">}</span> 
+     <span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">size</span> <span class="o">+</span> <span class="nx">heap</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span> 
+     <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="nx">array</span>
+  
+     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">total</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> 
+         <span class="k">this</span><span class="p">.</span><span class="nx">heapify</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+     <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We are done 🙌</p>
+
+<div style="text-align:center"><img src="https://media.giphy.com/media/KYElw07kzDspaBOwf9/giphy.gif" /></div>
+<hr />
+
+<p>That’s all, folks! I see you arround and wash your hands and use masks. 😁😷</p>
+
+<p>Code: <a href="https://github.com/FernandoBLima/data-structures">https://github.com/FernandoBLima/data-structures</a></p>
+
+<hr />
+
+<p><em>We finished our discussion about Heap structure.</em> 🙌</p>
+
+<p><em>If you found something I miss out or find this article helpful, feel free to let me know.</em> 😁</p>
+
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  <div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2020/12/13/data-structure-part-VII.html" target="_blank" title="Share on Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=http://localhost:4000/2020/12/13/data-structure-part-VII.html&text=Heap+-+Data+Structure+%26+Algorithm+Part+VII%20%7C%20Fernandoblima:%20http://localhost:4000/2020/12/13/data-structure-part-VII.html" target="_blank" title="Tweet">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+             
+        <li>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/2020/12/13/data-structure-part-VII.html&title=Heap+-+Data+Structure+%26+Algorithm+Part+VII%20%7C%20Fernandoblima&summary=&source=http://localhost:4000/2020/12/13/data-structure-part-VII.html" target="_blank" title="Share on LinkedIn">
+			<i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on LinkedIn</span>
+		</a>
+        </li>
+          
+        <li>
+            <a href="mailto:?subject=Heap+-+Data+Structure+%26+Algorithm+Part+VII%20%7C%20Fernandoblima&body=:%20http://localhost:4000/2020/12/13/data-structure-part-VII.html" target="_blank" title="Email">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+  <section style="text-align: left !important">
+    <!-- Tag list -->
+   
+   
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button tag-post" href="/tags#Algorithm">
+      <p><i class="fa fa-tag fa-fw"></i> Algorithm</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Data+Structure">
+      <p><i class="fa fa-tag fa-fw"></i> Data Structure</p>
+    </a>
+    
+    <a class="button tag-post" href="/tags#Javascript">
+      <p><i class="fa fa-tag fa-fw"></i> Javascript</p>
+    </a>
+    
+  </div>
+</footer>
+
+  </section>
+
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    
+
+    <div id="next-post">
+        <p>Previous post</p>
+        <a alt="Trie - Data Structure & Algorithm Part VI" href="/2020/05/27/data-structure-part-VI.html">
+            Trie - Data Structure & Algorithm Part VI
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  
+  header#main {
+    background-repeat:no-repeat;
+    background-image: url('');
+  }
+</style>
+    </div>
+    
+<footer class="site-footer">
+
+    <span><b>Fernando Baptistella</b></span>
+    
+    <span>© 2020</span>
+
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/fernandoblima" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/fernando-baptistella/" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>
