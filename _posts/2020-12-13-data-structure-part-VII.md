@@ -29,7 +29,7 @@ Let's start to work! 😃
 
 ### - What is a Heap? 🧐
 
-If you've seen how the heap structure organize values, you might think that there is some similarities to the tree structure. Yes, indeed. Basically, we can define a heap structure as a special full binary tree structure where each element has exactly two children, the only exception can be the deepest level. 
+If you've seen how the heap structure organizes values, you might think that there are some similarities to the tree structure. Yes, indeed. Basically, we can define a heap structure as a special full binary tree structure where each element has exactly two children, the only exception can be the deepest level. 
 
 One important thing to keep in mind about this structure is that there are two types of heap and the differences between them are related to the property of storing a value, which can be:
 
@@ -60,7 +60,7 @@ You are absolutely right! 😃 We can certainly implement it that way, however, 
 
 <div style="text-align:center"><img src="https://media.giphy.com/media/5wWf7GR2nhgamhRnEuA/giphy.gif" /></div>
 
-Instead of creating theses elements, we can use an array to store all the heap values, simple right? In this way, we just need to store all the values top to bottom, left to right, and that's it! Using this approach, we can know that the fifth value in the array will be the fifth value in the heap, for instance.
+Instead of creating these elements, we can use an array to store all the heap values, simple right? In this way, we just need to store all the values top to bottom, left to right, and that's it! Using this approach, we can know that the fifth value in the array will be the fifth value in the heap, for instance.
 
 Let's use the min-heap example used above and take a look at the following image:
 
@@ -76,7 +76,7 @@ The use of array indexes can describe the parent-child structure. But, wait! ✋
 - Returns the right child element = Arr[(2*i)+2]
 - Returns the parent element = Arr[i/2]
 
-For example, let's use the value X in the array, which is  the third element of the structure. To get the parent value, we just have to get the index value and divided by 2. Simple right? That said, understanding how we can access these values will be extremely important in the next function in the heap structure. 
+For example, let's use the value X in the array, which is  the third element of the structure. To get the parent value, we just have to get the index value and divided it by 2. Simple right? That said, understanding how we can access these values will be extremely important in the next function in the heap structure. 
 
 Now that we're on the same page, let's move on and put everything that we've learned into our code. First, we need to create the skeleton of our heap class.
 
@@ -100,7 +100,7 @@ Talk is cheap. Show me the code! 😁
 
 To insert a new element it is necessary to find the first available space in the structure looking for an empty spot from top to bottom and left to right order. 
 
-After that, it may be necessary to rearrange the structure, this process will compare the value inserted with the parent value based on the type of heap. The elements should be swap if not follow the heap property and continue to bubble until find the right spot in the structure. 
+After that, it may be necessary to rearrange the structure, this process will compare the value inserted with the parent value based on the type of heap. The elements should be swap if not follow the heap property and continue to bubble until finding the right spot in the structure. 
 
 In this function, we might have to make a comparison at each level of the structure and then swap the elements until the root element. Every time a new value goes up it takes O(1) time. So, the worst-case time complexity is O(nlg n) because we insert the value at the end of the heap and traverse up.
 
@@ -124,7 +124,7 @@ insert(value){
 
 ◼️ Deletion 
 
-In the Heap, we remove the root element of the structure and then replace it with the last value added. As you may be thinking, the new root element might probably not be in the right position. To solve this problem it is necessary call the heapify function, which is the most critical operation in this structure where it reorganize the values until the heap property is satisfied.
+In the Heap, we remove the root element of the structure and then replace it with the last value added. As you may be thinking, the new root element might probably not be in the right position. To solve this problem it is necessary to call the heapify function, which is the most critical operation in this structure where it reorganizes the values until the heap property is satisfied.
 
 ```javascript
 removeFromTop(){
@@ -155,7 +155,7 @@ swapElements(childrenIndex, parentIndex) {
 
 Using a top-down approach, this function will bubble it down comparing the new root element and the left and right child, then swap elements according to the type of heap and repeat the process until the new root element finds a valid spot and the heap property has been satisfied.
 
-Let's see how we can put theses words in a code.
+Let's see how we can put these words in a code.
 
 ```javascript
 
@@ -180,16 +180,16 @@ heapify(index=0){
 
 ```
 
-We can say that the main point of heapify function it to make sure that the structure follows the heap propriety by  comparing the elements and the child elements.
+We can say that the main point of heapify function is to make sure that the structure follows the heap propriety by comparing the elements and the child elements.
 
-The time complexity for swap element in each level is O(1) and the worst-case time is O(lg n) and it depends on how far an element can move down, which is related of the height of the heap. In the worst case, the element might go down all the way to the leaf level.
+The time complexity for swap element in each level is O(1) and the worst-case time is O(lg n) and it depends on how far an element can move down, which is related to the height of the heap. In the worst case, the element might go down all the way to the leaf level.
 
 
 > ⚡️ If you would like to learn others functions that I implemented you can access all the code just clicking [here](https://github.com/FernandoBLima/data-structures). 
 
 ◼️ Merge heaps
 
-To merge two existing heap into a single one can be done by all values moved from the smallest heap to the largest using the insert function. Hovever, isn't the best way because involves moving N items and rearranging at cost 0(log n), giving an overall time complexity of O(nlog n).
+To merge two existing heap into a single one can be done by all values moved from the smallest heap to the largest using the insert function. However isn't the best way because involves moving N items and rearranging at cost 0(log n), giving an overall time complexity of O(nlog n).
 
 The best approach is just concatenate the values of two heaps and then use heapify algorithm, as we can see below:
 
